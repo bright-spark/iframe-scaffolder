@@ -123,3 +123,24 @@ gulp.task('deploy', ['build'], function() {
 });
 
 gulp.task('build', ['html', 'images', 'misc']);
+
+
+gulp.task('default', ['clean'], function () { 
+  gulp.start('build');
+}   
+);
+
+gulp.task('watch', ['build'], function () {
+      
+    // Watch for changes in `app` folder
+    gulp.watch([
+      'src/*.html',
+      'src/{app,components}/**/*.js',
+      'src/assets/images/**/*',
+      'src/assets/**/*.{ico,json}'
+    ], ['build']);
+  
+    gulp.watch('src/{app,components}/**/*.less', ['styles']);
+    gulp.watch('src/{app,components}/**/*.html', ['partials']);
+  } 
+);
